@@ -43,6 +43,17 @@
       "phone": "+34 626-08-71-81",
       "location": "Rúa da Estrada, 56, Santiago de Compostela",
       "notes": "Abiertas"
+    },
+    {
+      "id": 5,
+      "name": "Tixola",
+      "pdaName": "Noavero SL",
+      "poliza": "2000819237",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Rúa da Raiña, 20, Santiago de Compostela",
+      "notes": ""
     }
   ]
 }

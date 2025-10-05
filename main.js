@@ -64,31 +64,6 @@ function loadFromLocalStorageBackup() {
   return false;
 }
 
-// Salvar dados no localStorage como backup
-function saveData() {
-  try {
-    localStorage.setItem("gasClientsData", JSON.stringify(clientsData));
-    console.log("OK:: Data saved to localStorage backup");
-
-    // Mostrar dados atualizados no console para atualização manual do db.json
-    showDataForDownload();
-  } catch (error) {
-    console.error("ERROR:: Failed to save to localStorage:", error);
-  }
-}
-
-// Função para mostrar dados atualizados para download manual
-function showDataForDownload() {
-  const dataToSave = {
-    clients: clientsData,
-    lastUpdated: new Date().toISOString(),
-  };
-
-  console.log("=== COPY THIS TO db.json ===");
-  console.log(JSON.stringify(dataToSave, null, 2));
-  console.log("============================");
-}
-
 // Renderizar clientes
 function renderClients(clients = clientsData) {
   const container = document.getElementById("clientsList");
@@ -123,18 +98,6 @@ function renderClients(clients = clientsData) {
         client.quantity ? ` (${client.quantity}x)` : ""
       }
                     </span>
-                    <div class="action-buttons">
-                        <button class="btn btn-sm btn-outline-primary" onclick="editClient(${
-                          client.id
-                        }); event.stopPropagation();">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-danger" onclick="deleteClient(${
-                          client.id
-                        }); event.stopPropagation();">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
             
@@ -425,8 +388,6 @@ async function initApp() {
   generateAlphabetNav();
   renderClients();
   setupSearch();
-  setupGasTypeListener();
-  setupModalListener();
 }
 
 document.addEventListener("DOMContentLoaded", initApp);
