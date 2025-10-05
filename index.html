@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entregas de Gás - Sistema PDA</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-container">
+        <div class="header">
+          <h1><i class="bi bi-fuel-pump me-2"></i>Entregas de Gás</h1>
+          <p class="text-muted">Sistema de gestão para lançamento na PDA</p>
+        </div>
+
+        <!-- Barra de Pesquisa -->
+        <div class="search-container">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0">
+              <i class="bi bi-search"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control search-input border-start-0"
+              id="searchInput"
+              placeholder="Buscar por nome do cliente (ex: Ponto, Tordoya, Estrada)..."
+              autofocus
+            />
+          </div>
+        </div>
+
+        <!-- Navegação Alfabética -->
+        <div class="alphabet-nav" id="alphabetNav">
+          <!-- Letras serão geradas dinamicamente -->
+        </div>
+
+        <!-- Lista de Clientes -->
+        <div id="clientsList">
+          <!-- Clientes serão carregados aqui -->
+        </div>
+
+        <!-- Botão Adicionar Cliente -->
+        <button
+          class="add-client-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#addClientModal"
+        >
+          <i class="bi bi-plus"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Adicionar/Editar Cliente -->
+    <div class="modal fade" id="addClientModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">
+              <i class="bi bi-person-plus me-2"></i>Adicionar Cliente
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="clientForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label"
+                    ><i class="bi bi-shop me-1"></i>Nome do Cliente *</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="clientName"
+                    placeholder="Ex: Restaurante Ponto"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label"
+                    ><i class="bi bi-building me-1"></i>Nome na PDA *</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="pdaName"
+                    placeholder="Ex: Avelino SL Restauracion Hostelera"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label"
+                    ><i class="bi bi-file-text me-1"></i>Número da Póliza
+                    *</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="poliza"
+                    placeholder="Ex: 2000538476"
+                    maxlength="10"
+                    required
+                  />
+                  <small class="form-text text-muted"
+                    >10 dígitos sem pontos</small
+                  >
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label"
+                    ><i class="bi bi-fuel-pump me-1"></i>Tipo de Gás *</label
+                  >
+                  <select class="form-select" id="gasType" required>
+                    <option value="">Selecione...</option>
+                    <option value="P35">P35 (Propano 35kg)</option>
+                    <option value="P11">P11 (Propano 11kg)</option>
+                    <option value="Butano">Butano</option>
+                    <option value="GLP">GLP</option>
+                    <option value="Camping901">Camping Gas 901</option>
+                    <option value="Camping907">Camping Gas 907</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3" id="quantityField" style="display: none">
+                <label class="form-label"
+                  ><i class="bi bi-123 me-1"></i>Quantidade de P35</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="quantity"
+                  min="1"
+                  placeholder="Ex: 6"
+                />
+                <small class="form-text text-muted">Apenas para tipo P35</small>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label"
+                  ><i class="bi bi-telephone me-1"></i>Telefone</label
+                >
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="clientPhone"
+                  placeholder="+34 123 456 789"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label"
+                  ><i class="bi bi-geo-alt me-1"></i>Localização</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="clientLocation"
+                  placeholder="Endereço ou coordenadas"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label"
+                  ><i class="bi bi-sticky me-1"></i>Notas</label
+                >
+                <textarea
+                  class="form-control"
+                  id="clientNotes"
+                  rows="3"
+                  placeholder="Observações importantes..."
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="saveClient()"
+            >
+              <i class="bi bi-check-lg me-1"></i>Salvar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

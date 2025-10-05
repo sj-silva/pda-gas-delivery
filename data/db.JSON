@@ -1,0 +1,48 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "name": "Restaurante Ponto",
+      "pdaName": "Avelino, SL Restauracion Hostelera",
+      "poliza": "2000538476",
+      "gasType": "P11",
+      "quantity": 4,
+      "phone": "+34 981 234 567",
+      "location": "Via Marconi, S/N, Poligono Boisaca",
+      "notes": "Cerradas"
+    },
+    {
+      "id": 2,
+      "name": "Restaurante Camilo",
+      "pdaName": "Sociedade Caribeña de Hosteleria",
+      "poliza": "2000853544",
+      "gasType": "P35",
+      "quantity": 3,
+      "phone": "",
+      "location": "Rúa da Raiña 24, Casco Vello",
+      "notes": "Cerradas"
+    },
+    {
+      "id": 3,
+      "name": "Restaurante Tordoya",
+      "pdaName": "Jose Jesus Silubuna Baleato",
+      "poliza": "1001160798",
+      "gasType": "P35",
+      "quantity": 6,
+      "phone": "",
+      "location": "Rúa do Tambre, 189, Santiago de Compostela",
+      "notes": "Cerradas"
+    },
+    {
+      "id": 4,
+      "name": "Bar Estrada",
+      "pdaName": "Pena Rivas Manuel",
+      "poliza": "1001473538",
+      "gasType": "P35",
+      "quantity": 3,
+      "phone": "+34 626-08-71-81",
+      "location": "Rúa da Estrada, 56, Santiago de Compostela",
+      "notes": "Abiertas"
+    }
+  ]
+}
