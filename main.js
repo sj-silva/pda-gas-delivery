@@ -1,6 +1,9 @@
 let clientsData = [];
 let currentEditingId = null;
 
+// URL base for GitHub Pages
+const BASE_URL = "https://sj-silva.github.io/pda-gas-delivery";
+
 // Função para formatar póliza
 function formatPoliza(poliza) {
   if (!poliza || poliza.length !== 10) return poliza;
@@ -23,20 +26,67 @@ function getGasBadgeClass(gasType) {
   return classes[gasType] || "badge-p11";
 }
 
-// Carregar dados
-function loadData() {
-  const stored = localStorage.getItem("gasClientsData");
-  if (stored) {
-    clientsData = JSON.parse(stored);
-  } else {
-    clientsData = initialData.clients;
-    saveData();
+// Carregar dados do db.json
+async function loadData() {
+  try {
+    const response = await fetch(`${BASE_URL}/data/db.JSON`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    clientsData = data.clients || [];
+    console.log("OK:: Data Loaded Correctly:", clientsData);
+  } catch (error) {
+    console.error("ERROR:: Failed to Load Data:", error);
+    // Tentar carregar do localStorage como backup
+    if (loadFromLocalStorageBackup()) {
+      console.log("OK:: Data loaded from localStorage backup");
+    } else {
+      console.error(
+        "ERROR:: No data available - Failed to load from both GitHub and localStorage"
+      );
+      clientsData = [];
+    }
   }
 }
 
-// Salvar dados
+// Tentar carregar do localStorage se db.json falhar
+function loadFromLocalStorageBackup() {
+  try {
+    const stored = localStorage.getItem("gasClientsData");
+    if (stored) {
+      clientsData = JSON.parse(stored);
+      return true;
+    }
+  } catch (error) {
+    console.error("ERROR:: Failed to load from localStorage:", error);
+  }
+  return false;
+}
+
+// Salvar dados no localStorage como backup
 function saveData() {
-  localStorage.setItem("gasClientsData", JSON.stringify(clientsData));
+  try {
+    localStorage.setItem("gasClientsData", JSON.stringify(clientsData));
+    console.log("OK:: Data saved to localStorage backup");
+
+    // Mostrar dados atualizados no console para atualização manual do db.json
+    showDataForDownload();
+  } catch (error) {
+    console.error("ERROR:: Failed to save to localStorage:", error);
+  }
+}
+
+// Função para mostrar dados atualizados para download manual
+function showDataForDownload() {
+  const dataToSave = {
+    clients: clientsData,
+    lastUpdated: new Date().toISOString(),
+  };
+
+  console.log("=== COPY THIS TO db.json ===");
+  console.log(JSON.stringify(dataToSave, null, 2));
+  console.log("============================");
 }
 
 // Renderizar clientes
@@ -45,11 +95,13 @@ function renderClients(clients = clientsData) {
 
   if (clients.length === 0) {
     container.innerHTML = `
-                    <div class="no-results">
-                        <i class="bi bi-search"></i>
-                        <p>Nenhum cliente encontrado</p>
-                    </div>
-                `;
+            <div class="no-results">
+                <i class="bi bi-exclamation-triangle"></i>
+                <h4>Falha no carregamento de dados</h4>
+                <p>Não foi possível carregar os clientes do servidor.</p>
+                <p class="text-muted">Verifique sua conexão ou tente novamente mais tarde.</p>
+            </div>
+        `;
     return;
   }
 
@@ -58,98 +110,98 @@ function renderClients(clients = clientsData) {
   container.innerHTML = clients
     .map(
       (client) => `
-                <div class="client-card" onclick="toggleDetails(${client.id})">
-                    <div class="client-header">
-                        <div>
-                            <div class="client-name">${client.name}</div>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="client-type-badge ${getGasBadgeClass(
-                              client.gasType
-                            )}">
-                                ${client.gasType}${
+        <div class="client-card" onclick="toggleDetails(${client.id})">
+            <div class="client-header">
+                <div>
+                    <div class="client-name">${client.name}</div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="client-type-badge ${getGasBadgeClass(
+                      client.gasType
+                    )}">
+                        ${client.gasType}${
         client.quantity ? ` (${client.quantity}x)` : ""
       }
-                            </span>
-                            <div class="action-buttons">
-                                <button class="btn btn-sm btn-outline-primary" onclick="editClient(${
-                                  client.id
-                                }); event.stopPropagation();">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="deleteClient(${
-                                  client.id
-                                }); event.stopPropagation();">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="client-details" id="details-${client.id}">
-                        <div class="detail-row">
-                            <span class="detail-label"><i class="bi bi-building me-2"></i>Nome na PDA:</span>
-                            <span class="detail-value">${client.pdaName}</span>
-                        </div>
-                        
-                        <div class="detail-row">
-                            <span class="detail-label"><i class="bi bi-file-text me-2"></i>Número da Póliza:</span>
-                            <span class="poliza-display">${formatPoliza(
-                              client.poliza
-                            )}</span>
-                        </div>
-                        
-                        <div class="detail-row">
-                            <span class="detail-label"><i class="bi bi-fuel-pump me-2"></i>Tipo de Gás:</span>
-                            <span class="detail-value">${client.gasType}</span>
-                        </div>
-                        
-                        ${
-                          client.quantity
-                            ? `
-                        <div class="detail-row">
-                            <span class="detail-label"><i class="bi bi-123 me-2"></i>Quantidade:</span>
-                            <span class="quantity-badge">${client.quantity} bombonas</span>
-                        </div>
-                        `
-                            : ""
-                        }
-                        
-                        ${
-                          client.phone
-                            ? `
-                        <div class="detail-row">
-                            <span class="detail-label"><i class="bi bi-telephone me-2"></i>Telefone:</span>
-                            <span class="detail-value">${client.phone}</span>
-                        </div>
-                        `
-                            : ""
-                        }
-                        
-                        ${
-                          client.location
-                            ? `
-                        <div class="detail-row">
-                            <span class="detail-label"><i class="bi bi-geo-alt me-2"></i>Localização:</span>
-                            <span class="detail-value">${client.location}</span>
-                        </div>
-                        `
-                            : ""
-                        }
-                        
-                        ${
-                          client.notes
-                            ? `
-                        <div class="detail-row">
-                            <span class="detail-label"><i class="bi bi-sticky me-2"></i>Notas:</span>
-                            <span class="detail-value">${client.notes}</span>
-                        </div>
-                        `
-                            : ""
-                        }
+                    </span>
+                    <div class="action-buttons">
+                        <button class="btn btn-sm btn-outline-primary" onclick="editClient(${
+                          client.id
+                        }); event.stopPropagation();">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteClient(${
+                          client.id
+                        }); event.stopPropagation();">
+                            <i class="bi bi-trash"></i>
+                        </button>
                     </div>
                 </div>
-            `
+            </div>
+            
+            <div class="client-details" id="details-${client.id}">
+                <div class="detail-row">
+                    <span class="detail-label"><i class="bi bi-building me-2"></i>Nome na PDA:</span>
+                    <span class="detail-value">${client.pdaName}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label"><i class="bi bi-file-text me-2"></i>Número da Póliza:</span>
+                    <span class="poliza-display">${formatPoliza(
+                      client.poliza
+                    )}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label"><i class="bi bi-fuel-pump me-2"></i>Tipo de Gás:</span>
+                    <span class="detail-value">${client.gasType}</span>
+                </div>
+                
+                ${
+                  client.quantity
+                    ? `
+                <div class="detail-row">
+                    <span class="detail-label"><i class="bi bi-123 me-2"></i>Quantidade:</span>
+                    <span class="quantity-badge">${client.quantity} bombonas</span>
+                </div>
+                `
+                    : ""
+                }
+                
+                ${
+                  client.phone
+                    ? `
+                <div class="detail-row">
+                    <span class="detail-label"><i class="bi bi-telephone me-2"></i>Telefone:</span>
+                    <span class="detail-value">${client.phone}</span>
+                </div>
+                `
+                    : ""
+                }
+                
+                ${
+                  client.location
+                    ? `
+                <div class="detail-row">
+                    <span class="detail-label"><i class="bi bi-geo-alt me-2"></i>Localização:</span>
+                    <span class="detail-value">${client.location}</span>
+                </div>
+                `
+                    : ""
+                }
+                
+                ${
+                  client.notes
+                    ? `
+                <div class="detail-row">
+                    <span class="detail-label"><i class="bi bi-sticky me-2"></i>Notas:</span>
+                    <span class="detail-value">${client.notes}</span>
+                </div>
+                `
+                    : ""
+                }
+            </div>
+        </div>
+    `
     )
     .join("");
 }
@@ -224,13 +276,15 @@ function showAllClients() {
 }
 
 // Controle do campo quantidade
-document.getElementById("gasType").addEventListener("change", function () {
-  const quantityField = document.getElementById("quantityField");
-  quantityField.style.display = this.value === "P35" ? "block" : "none";
-  if (this.value !== "P35") {
-    document.getElementById("quantity").value = "";
-  }
-});
+function setupGasTypeListener() {
+  document.getElementById("gasType").addEventListener("change", function () {
+    const quantityField = document.getElementById("quantityField");
+    quantityField.style.display = this.value === "P35" ? "block" : "none";
+    if (this.value !== "P35") {
+      document.getElementById("quantity").value = "";
+    }
+  });
+}
 
 // Salvar cliente
 function saveClient() {
@@ -283,6 +337,31 @@ function saveClient() {
   );
   modal.hide();
   resetForm();
+
+  showNotification(
+    "Cliente salvo com sucesso! Verifique o console para atualizar o db.json",
+    "success"
+  );
+}
+
+// Função para mostrar notificações
+function showNotification(message, type = "info") {
+  const notification = document.createElement("div");
+  notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+  notification.style.cssText =
+    "top: 20px; right: 20px; z-index: 9999; max-width: 400px;";
+  notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    if (notification.parentNode) {
+      notification.remove();
+    }
+  }, 5000);
 }
 
 // Editar cliente
@@ -315,6 +394,10 @@ function deleteClient(id) {
     clientsData = clientsData.filter((c) => c.id !== id);
     saveData();
     renderClients();
+    showNotification(
+      "Cliente deletado! Verifique o console para atualizar o db.json",
+      "warning"
+    );
   }
 }
 
@@ -325,19 +408,25 @@ function resetForm() {
 }
 
 // Resetar modal ao fechar
-document
-  .getElementById("addClientModal")
-  .addEventListener("hidden.bs.modal", function () {
-    currentEditingId = null;
-    document.getElementById("modalTitle").innerHTML =
-      '<i class="bi bi-person-plus me-2"></i>Adicionar Cliente';
-    resetForm();
-  });
+function setupModalListener() {
+  document
+    .getElementById("addClientModal")
+    .addEventListener("hidden.bs.modal", function () {
+      currentEditingId = null;
+      document.getElementById("modalTitle").innerHTML =
+        '<i class="bi bi-person-plus me-2"></i>Adicionar Cliente';
+      resetForm();
+    });
+}
 
 // Inicializar
-document.addEventListener("DOMContentLoaded", function () {
-  loadData();
+async function initApp() {
+  await loadData();
   generateAlphabetNav();
   renderClients();
   setupSearch();
-});
+  setupGasTypeListener();
+  setupModalListener();
+}
+
+document.addEventListener("DOMContentLoaded", initApp);
