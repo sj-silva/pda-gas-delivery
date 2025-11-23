@@ -189,14 +189,36 @@
     },
     {
       "id": 18,
-      "name": "Lavanderia",
-      "pdaName": "AYR Complementos",
-      "poliza": "1001762710",
-      "gasType": "P35",
-      "quantity": "2",
+      "name": "Orella, Restaurante",
+      "pdaName": "Restaurante Orella En Constitución",
+      "poliza": "2000962790",
+      "gasType": "P11",
+      "quantity": "",
       "phone": "",
-      "location": "Rúa do Preguntoiro, 17 - Santiago de Compostela",
-      "notes": "Abiertas"
+      "location": "Rúa da Raiña, 21 - Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 19,
+      "name": "Golf",
+      "pdaName": "Rita Villar Fernandez",
+      "poliza": "2000272218",
+      "gasType": "P35",
+      "quantity": "3",
+      "phone": "",
+      "location": "Carretera Santiago Carballo, KM 9.7 - Ameixenda",
+      "notes": ""
+    },
+    {
+      "id": 20,
+      "name": "La Competencia, Pizzaria",
+      "pdaName": "Jolcompe Santiago",
+      "poliza": "2000995298",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "",
+      "notes": ""
     }
   ]
 }
