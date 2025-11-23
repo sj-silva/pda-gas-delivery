@@ -2,7 +2,7 @@
   "clients": [
     {
       "id": 1,
-      "name": "Restaurante Ponto",
+      "name": "Ponto, Restaurante",
       "pdaName": "Avelino, SL Restauracion Hostelera",
       "poliza": "2000538476",
       "gasType": "P11",
@@ -13,7 +13,7 @@
     },
     {
       "id": 2,
-      "name": "Restaurante Camilo",
+      "name": "Camilo, Restaurante",
       "pdaName": "Sociedad de Hosteleria Caribeña",
       "poliza": "2000853544",
       "gasType": "P35",
@@ -24,7 +24,7 @@
     },
     {
       "id": 3,
-      "name": "Restaurante Tordoya",
+      "name": "Tordoya, Restaurante",
       "pdaName": "Jose Jesus Silubuna Baleato",
       "poliza": "1001160798",
       "gasType": "P35",
@@ -35,7 +35,7 @@
     },
     {
       "id": 4,
-      "name": "Bar La Estrada",
+      "name": "La Estrada, Restaurante",
       "pdaName": "Pena Rivas Manuel",
       "poliza": "1001473538",
       "gasType": "P35",
@@ -98,6 +98,105 @@
       "phone": "",
       "location": "Rúa Raiña, 19, Santiago de Compostela",
       "notes": ""
+    },
+    {
+      "id": 10,
+      "name": "Torre, Residencial",
+      "pdaName": "Arturo Maneiro Vila",
+      "poliza": "2000408391",
+      "gasType": "P35",
+      "quantity": "3",
+      "phone": "",
+      "location": "Aldea Torre, 64 - Teo",
+      "notes": ""
+    },
+    {
+      "id": 11,
+      "name": "Fuego Lento, Restaurante",
+      "pdaName": "Alfonso Juan Moldes Castiñeira",
+      "poliza": "2000169555",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Rúa do Vilar, 25 - Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 12,
+      "name": "Bodegon Casas Chico, Restaurante",
+      "pdaName": "Alfonso Moldes Slu",
+      "poliza": "2000496939",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Rúa Casas Reais, 23 - Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 13,
+      "name": "Orixe, Restaurante",
+      "pdaName": "Grupo Orixe Gastronomia Galega",
+      "poliza": "1001744727",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Rúa Casas Reais, 21 - Santiago de Compostela",
+      "notes": "Entregas hasta 13:15h"
+    },
+    {
+      "id": 14,
+      "name": "Primera Estación, Café Bar",
+      "pdaName": "Maria Carmen Batalla Batalla",
+      "poliza": "1001789776",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Rúa Anxeriz, 13 - Milladoiro",
+      "notes": ""
+    },
+    {
+      "id": 15,
+      "name": "Chus Sande, Panaderia",
+      "pdaName": "Maria Jesus Sande Silva",
+      "poliza": "1001617470",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Rúa Anxeriz, 11 - Milladoiro",
+      "notes": ""
+    },
+    {
+      "id": 16,
+      "name": "Fogar de Seidon",
+      "pdaName": "Mahna S.C. En Constitución",
+      "poliza": "2000800453",
+      "gasType": "P35",
+      "quantity": "3",
+      "phone": "",
+      "location": "Rúa Anxeriz, 17 - Milladoiro",
+      "notes": "Cerradas"
+    },
+    {
+      "id": 17,
+      "name": "Lavanderia",
+      "pdaName": "AYR Complementos",
+      "poliza": "1001762710",
+      "gasType": "P35",
+      "quantity": "2",
+      "phone": "",
+      "location": "Rúa do Preguntoiro, 17 - Santiago de Compostela",
+      "notes": "Abiertas"
+    },
+    {
+      "id": 18,
+      "name": "Lavanderia",
+      "pdaName": "AYR Complementos",
+      "poliza": "1001762710",
+      "gasType": "P35",
+      "quantity": "2",
+      "phone": "",
+      "location": "Rúa do Preguntoiro, 17 - Santiago de Compostela",
+      "notes": "Abiertas"
     }
   ]
 }
