@@ -14,7 +14,7 @@
     {
       "id": 2,
       "name": "Restaurante Camilo",
-      "pdaName": "Sociedade Caribeña de Hosteleria",
+      "pdaName": "Sociedad de Hosteleria Caribeña",
       "poliza": "2000853544",
       "gasType": "P35",
       "quantity": 3,
@@ -35,11 +35,11 @@
     },
     {
       "id": 4,
-      "name": "Bar Estrada",
+      "name": "Bar La Estrada",
       "pdaName": "Pena Rivas Manuel",
       "poliza": "1001473538",
       "gasType": "P35",
-      "quantity": 3,
+      "quantity": 2,
       "phone": "+34 626-08-71-81",
       "location": "Rúa da Estrada, 56, Santiago de Compostela",
       "notes": "Abiertas"
@@ -53,6 +53,50 @@
       "quantity": "",
       "phone": "",
       "location": "Rúa da Raiña, 20, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 6,
+      "name": "Curtiña",
+      "pdaName": "Ruben Gonzalez Rivera",
+      "poliza": "2000650529",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Rúa do Cardeal Payá, 16, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 7,
+      "name": "Sindueña",
+      "pdaName": "Gula Galega",
+      "poliza": "2000800749",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Rúa Nova, 36, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "name": "Maria Castaña",
+      "pdaName": "Maria Castaña",
+      "poliza": "2000496273",
+      "gasType": "P35",
+      "quantity": "5",
+      "phone": "abiertas",
+      "location": "Rúa Raiña, 19, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 9,
+      "name": "Maria Castaña",
+      "pdaName": "SL Maria Castaña",
+      "poliza": "2000788062",
+      "gasType": "Butano",
+      "quantity": "",
+      "phone": "",
+      "location": "Rúa Raiña, 19, Santiago de Compostela",
       "notes": ""
     }
   ]
