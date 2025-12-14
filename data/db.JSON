@@ -25,7 +25,7 @@
     {
       "id": 3,
       "name": "Tordoya, Restaurante",
-      "pdaName": "Jose Jesus Silubuna Baleato",
+      "pdaName": "Jose J. S. Baleato",
       "poliza": "1001160798",
       "gasType": "P35",
       "quantity": 6,
@@ -36,7 +36,7 @@
     {
       "id": 4,
       "name": "La Estrada, Restaurante",
-      "pdaName": "Pena Rivas Manuel",
+      "pdaName": "Pena R. Manuel",
       "poliza": "1001473538",
       "gasType": "P35",
       "quantity": 2,
@@ -102,7 +102,7 @@
     {
       "id": 10,
       "name": "Torre, Residencial",
-      "pdaName": "Arturo Maneiro Vila",
+      "pdaName": "Arturo Maneiro",
       "poliza": "2000408391",
       "gasType": "P35",
       "quantity": "3",
@@ -219,6 +219,149 @@
       "phone": "",
       "location": "",
       "notes": ""
-    }
+    },
+    {
+      "id": 21,
+      "name": "Begoña",
+      "pdaName": "Begoña F. Garcia",
+      "poliza": "2000384212",
+      "gasType": "P35",
+      "quantity": "5",
+      "phone": "",
+      "location": "Deseiro de Arriba, 30, Boqueixón",
+      "notes": ""
+    },
+    {
+      "id": 22,
+      "name": "Tarelo Butano",
+      "pdaName": "Jose Antonio P. B.",
+      "poliza": "1001128773",
+      "gasType": "Butano",
+      "quantity": "",
+      "phone": "",
+      "location": "Vista Alegre, 72, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 23,
+      "name": "Tarelo Propano",
+      "pdaName": "Juan Pose Vazquez",
+      "poliza": "1001128766",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Vista Alegre, 72, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 24,
+      "name": "Altamira Propano",
+      "pdaName": "Cafe Bar Rest HJS Altamira",
+      "poliza": "1001499435",
+      "gasType": "P11",
+      "quantity": "5",
+      "phone": "",
+      "location": "Av. Rosalia de Castro, 127, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 25,
+      "name": "Altamira Butano",
+      "pdaName": "Cafe Bar Rest HIJOS Altamira",
+      "poliza": "2000298824",
+      "gasType": "P11",
+      "quantity": "5",
+      "phone": "",
+      "location": "Av. Rosalia de Castro, 127, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 26,
+      "name": "Felisa",
+      "pdaName": "Pousada Enxebre SL",
+      "poliza": "2000423892",
+      "gasType": "P35",
+      "quantity": "4",
+      "phone": "",
+      "location": "Rua da Porta da Pena, 5, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 27,
+      "name": "Lameira de Marantes Butano",
+      "pdaName": "Adrian V. Parrado",
+      "poliza": "2000306955",
+      "gasType": "Butano",
+      "quantity": "2",
+      "phone": "",
+      "location": "Lameira de Marantes, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 28,
+      "name": "Lameira de Marantes Propano",
+      "pdaName": "Adrian V. Parrado",
+      "poliza": "2000316759",
+      "gasType": "P35",
+      "quantity": "3",
+      "phone": "",
+      "location": "Lameira de Marantes, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 29,
+      "name": "Galaico",
+      "pdaName": "R. A. Tito Reaño",
+      "poliza": "2000833585",
+      "gasType": "P35",
+      "quantity": "1",
+      "phone": "",
+      "location": "Rua Nova, 39, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 30,
+      "name": "Monroy",
+      "pdaName": "Maria V. Jimenez",
+      "poliza": "2000700449",
+      "gasType": "Butano",
+      "quantity": "1",
+      "phone": "",
+      "location": "Rua da Raiña, 11, Santiago de Compostela",
+      "notes": ""
+    },
+    {
+      "id": 31,
+      "name": "Escalona",
+      "pdaName": "A. Rodriguez Escalona",
+      "poliza": "2000382050",
+      "gasType": "P35",
+      "quantity": "5",
+      "phone": "",
+      "location": "Agrela, Ames",
+      "notes": ""
+    },
+    {
+      "id": 32,
+      "name": "Pulperia Lestedo",
+      "pdaName": "J. D. Vazquez Estevez",
+      "poliza": "1001419881",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Campo Feria, Lestedo",
+      "notes": ""
+    },
+    {
+      "id": 33,
+      "name": "Pulperia Pontevea",
+      "pdaName": "P. Mata Castro",
+      "poliza": "2000827908",
+      "gasType": "P11",
+      "quantity": "",
+      "phone": "",
+      "location": "Aldea Fontenlo, Teo",
+      "notes": ""
+    },
   ]
 }
